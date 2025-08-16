@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Jimena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffb3d9 50%, #ff99cc 100%);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            animation: fadeInDown 1.5s ease-out;
+        }
+
+        .title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #ff1493;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #e91e63;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .hearts {
+            font-size: 2rem;
+            animation: heartbeat 2s infinite;
+            color: #ff1493;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .image-section {
+            text-align: center;
+        }
+
+        .romantic-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            overflow: hidden;
+        }
+
+        .romantic-image:hover {
+            transform: scale(1.05);
+        }
+
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .love-text {
+            font-family: 'Montserrat', serif;
+            font-size: 1.5rem;
+            color: #f12f7dce;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cartas-section {
+            text-align: center;
+            margin: 60px 0;
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+
+        .cartas-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #ff1493;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cartas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .carta-panel {
+            background: linear-gradient(135deg, #fff0f5, #ffe6f2);
+            border: 3px solid #ff69b4;
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+        }
+
+        .carta-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .carta-panel:hover::before {
+            left: 100%;
+        }
+
+        .carta-panel:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4);
+            border-color: #ff1493;
+        }
+
+        .carta-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            color: #ff1493;
+        }
+
+        .carta-panel:hover .carta-icon {
+            transform: scale(1.2);
+        }
+
+        .carta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #e91e63;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .carta-description {
+            font-size: 1rem;
+            color: #c2185b;
+            margin-bottom: 20px;
+        }
+
+        .carta-hover-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.2rem;
+            color: #ff1493;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 25px;
+            white-space: nowrap;
+        }
+
+        .carta-panel:hover .carta-hover-text {
+            opacity: 1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 0;
+            color: #e91e63;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.3rem;
+            animation: fadeInUp 1.5s ease-out 1.5s both;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.3);
+            animation: float 6s linear infinite;
+            font-size: 1.5rem;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .cartas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Para Jimena Franchesca Ramos Yarasca</h1>
+            <p class="subtitle"></p>
+            <div class="hearts"></div>
+        </header>
+
+        <main class="main-content">
+            <section class="image-section">
+                <div class="romantic-image">
+                    <img src="jimena.png" alt="Jimena" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px; ">
+                </div>
+                <p style="color: #ee3a76; font-size: 1rem; margin-top: -10px;">
+                    Eres el amor de mi vida
+                </p>
+            </section>
+
+            <section class="text-section">
+                <p class="love-text"><style margin-top: 50px></style>
+                    "Cada día que pasa, mi amor por ti crece más y más. 
+                    Eres mi sueño hecho realidad, mi felicidad completa. 
+                    Gracias por ser como eres y llenar mi vida de amor y alegría."
+                </p>
+            </section>
+        </main>
+
+        <section class="cartas-section">
+            <h2 class="cartas-title">Mis Cartas Para Ti</h2>
+            <div class="cartas-grid">
+                <div class="carta-panel" onclick="window.location.href='carta1.html'">
+                    <div class="carta-icon">♥</div>
+                    <h3 class="carta-title">Carta de Amor</h3>
+                    <p class="carta-description">Cartita de amor</p>
+                    <div class="carta-hover-text">¡Abrir!</div>
+                </div>
+
+                <div class="carta-panel" onclick="window.location.href='carta2.html'">
+                    <div class="carta-icon">♥</div>
+                    <h3 class="carta-title">Promesa Eterna</h3>
+                    <p class="carta-description">Para siempre</p>
+                    <div class="carta-hover-text">¡Abrir!</div>
+                </div>
+
+                <div class="carta-panel" onclick="window.location.href='carta3.html'">
+                    <div class="carta-icon">♥</div>
+                    <h3 class="carta-title">Palabras de mi corazón</h3>
+                    <p class="carta-description">Un mensaje muy especial para ti</p>
+                    <div class="carta-hover-text">¡Abrir!</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Te amo infinitamente</p>
+            <p style="margin-top: 10px; font-size: 1rem;">Con todo mi corazón y alma</p>
+        </footer>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['♥', '♥', '♥', '♥', '♥'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                heart.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 6000);
+            }, 300);
+        }
+
+        // Inicializar corazones flotantes
+        createFloatingHearts();
+
+        // Efecto de partículas al hacer clic
+        document.addEventListener('click', function(e) {
+            const particle = document.createElement('div');
+            particle.innerHTML = '♥';
+            particle.style.position = 'fixed';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.pointerEvents = 'none';
+            particle.style.fontSize = '2rem';
+            particle.style.zIndex = '1000';
+            particle.style.animation = 'fadeInUp 1s ease-out forwards';
+            particle.style.color = '#ff1493';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

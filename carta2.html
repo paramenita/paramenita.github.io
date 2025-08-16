@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Romántica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe6f2 0%, #ffb3d9 50%, #ff99cc 100%);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff69b4;
+            border-radius: 50px;
+            padding: 15px 25px;
+            color: #ff1493;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .back-button:hover {
+            background: #ff69b4;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .carta-container {
+            background: linear-gradient(135deg, #fff0f5, #ffe6f2);
+            border: 5px solid #ff69b4;
+            border-radius: 30px;
+            padding: 50px;
+            margin: 60px 0;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: cartaSlideIn 1.5s ease-out;
+        }
+
+        .carta-container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            border-radius: 0 30px 0 100px;
+            opacity: 0.1;
+        }
+
+        .carta-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carta-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            color: #ff1493;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .carta-date {
+            font-family: 'Montserrat', serif;
+            font-size: 1.5rem;
+            color: #e91e63;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .carta-content {
+            font-family: 'Montserrat', serif;
+            font-size: 1.8rem;
+            color: #c2185b;
+            line-height: 2;
+            text-align: justify;
+            position: relative;
+            z-index: 2;
+        }
+
+        .carta-signature {
+            text-align: right;
+            margin-top: 40px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: #ff1493;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .rose-decoration {
+            position: absolute;
+            font-size: 2.5rem;
+            color: rgba(255, 105, 180, 0.4);
+            animation: roseFloat 5s ease-in-out infinite;
+        }
+
+        .rose1 { top: 30px; left: 30px; animation-delay: 0s; }
+        .rose2 { top: 120px; right: 40px; animation-delay: 1.5s; }
+        .rose3 { bottom: 60px; left: 50px; animation-delay: 3s; }
+        .rose4 { bottom: 150px; right: 30px; animation-delay: 4.5s; }
+
+        .poem-section {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 192, 203, 0.2));
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .poem-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+
+        .poem-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #c2185b;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        @keyframes cartaSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-100px) rotate(-3deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(0deg);
+            }
+        }
+
+        @keyframes roseFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(180deg); }
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.2);
+            animation: float 8s linear infinite;
+            font-size: 1.2rem;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carta-container {
+                padding: 30px;
+                margin: 40px 0;
+            }
+            
+            .carta-title {
+                font-size: 2.5rem;
+            }
+            
+            .carta-content {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <a href="index.html" class="back-button">← Volver</a>
+    
+    <div class="container">
+        <div class="carta-container">
+            <div class="rose-decoration rose1">♥</div>
+            <div class="rose-decoration rose2">♥</div>
+            <div class="rose-decoration rose3">♥</div>
+            <div class="rose-decoration rose4">♥</div>
+            
+            <header class="carta-header">
+                <h1 class="carta-title">Promesa De Amor</h1>
+                <p class="carta-date"></p>
+            </header>
+            
+            <div class="carta-content">
+                <p style="margin-bottom: 25px;">
+                    Mi querida princesa,
+                </p>
+                
+                <p style="margin-bottom: 25px;">
+                    Hoy quiero escribirte algo que llevo en el corazón:
+                     mi promesa de amor para ti.
+                    No es solo una promesa romántica como en las películas
+                     (puede ser JAJAJA), sino una promesa real, que se construyen con detalles,
+                       risas, paciencia y tambien con las ocurrencias y momentos bonitos que siempre terminan haciéndonos felices.
+
+Prometo estar contigo en lo bonito, como cuando todo fluye y parece sacado de un sueño, pero también en lo difícil, cuando toque tener más fe, más paciencia.
+Prometo cuidarte incluso hasta cuando digas “no tengo hambre”(anemica 😠).
+Prometo escucharte aunque a veces no entienda del todo (quien te entiende, no mentira JAJAJAJ).
+Y prometo que siempre, pase lo que pase, voy a elegirte a ti y solo A TI.
+
+Quiero que sepas que mi amor por ti no se mide en flores, regalos o palabras bonitas, sino en la certeza de que Dios nos puso en el mismo camino y que contigo quiero caminar cada paso(o sea tmb en lo otro pero si),.
+No seremos perfectos, pero juntos podemos mejorar, ser felices y llenos de amor.
+                </p>
+                
+                <div class="poem-section">
+                    <h3 class="poem-title">Versiculo</h3>
+                    <div class="poem-text">
+                        “El amor todo lo disculpa,
+                    </br> todo lo cree, todo lo espera,
+                </br> todo lo soporta. El amor nunca deja de ser.”
+            </br>— 1 Corintios 13:7-8
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carta-signature">
+        
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear corazones flotantes
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['♥', '♥', '♥', '♥', '♥'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'floating-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                heart.style.fontSize = (Math.random() * 0.8 + 0.8) + 'rem';
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 8000);
+            }, 500);
+        }
+
+        // Inicializar corazones flotantes
+        createFloatingHearts();
+
+        // Efecto de partículas al hacer clic
+        document.addEventListener('click', function(e) {
+            const particle = document.createElement('div');
+            particle.innerHTML = '♥';
+            particle.style.position = 'fixed';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.pointerEvents = 'none';
+            particle.style.fontSize = '2rem';
+            particle.style.zIndex = '1000';
+            particle.style.animation = 'cartaSlideIn 1s ease-out forwards';
+            particle.style.color = '#ff1493';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
